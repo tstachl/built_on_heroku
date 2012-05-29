@@ -10,7 +10,11 @@ Ext.define('BuiltOnHeroku.controller.Main', {
   },
   
   doCheck: function() {
-    Ext.Viewport.setMasked(true);
+    Ext.Viewport.setMasked({
+      xtype: 'loadmask',
+      message: 'Checking domain'
+    });
+    
     var a      = document.createElement('a'),
         domain = Ext.getCmp('domain').getValue();
     
