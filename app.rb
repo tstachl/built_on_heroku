@@ -11,7 +11,8 @@ set :public_folder, Proc.new {
 
 def built_on_heroku(domain)
   begin
-    return Net::DNS::Resolver.start(IPSocket::getaddress(domain), Net::DNS::PTR).to_s.include? 'heroku'
+    return true if ['75.101.163.44', '75.101.145.87', '174.129.212.2'].include? IPSocket::getaddress(domain)
+    return Net::DNS::Resolver.start(domain, Net::DNS::PTR).to_s.include? 'heroku'
   rescue
     return nil
   end
